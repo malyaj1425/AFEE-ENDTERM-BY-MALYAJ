@@ -1,0 +1,52 @@
+.banner{
+    height: 500px;
+    width: 100%;
+    background-color: rgb(31 41 55);
+    display: flex;
+}
+.banner .bcards{
+    width: 100%;
+    margin-top: 35px;
+    margin-left: 8%;
+    display: flex;
+}
+.banner .bcard1{
+    position: relative;
+    height: 350px;
+    width: 450px;
+    background-color: rgb(152, 152, 152);
+    transition: 500ms;
+
+}
+.banner .bcard2{
+    position: absolute;
+    height: 350px;
+    width: 450px;
+    background-color: rgb(216, 216, 216) ;
+    margin-left: 20px;
+    margin-top: 20px;
+    transition: 500ms;
+}
+.banner .bcard3{
+    position: absolute;
+    height: 350px;
+    width: 450px;
+    background-color:  rgb(255, 255, 255);
+    margin-left: 40px;
+    margin-top: 40px;
+    border-end-end-radius: 10px;
+    transition: 500ms;
+
+}
+.bcards:hover .bcard1{
+    translate: -10px -10px;
+    transition: 500ms;
+}
+
+.bcards:hover .bcard3{
+    translate: 10px 10px;
+    transition: 500ms;
+}
+.banner .btext{
+    width: 100%;
+}

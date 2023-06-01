@@ -1,0 +1,29 @@
+.profilehead{
+    width:100%;
+    height:300px;
+    background-color: rgb(31 41 55);
+    padding-top: 150px;
+    padding-bottom: 300px;
+}
+.profilehead h1{
+    font-weight: bold;
+    font-size: 50px;
+    margin-left: 20px;
+}
+.profilehead p{
+    font-size: 20px;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+.profilehead button{
+    margin-top: 15px;
+    margin-left: 20px;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    color: white;
+    background-color: #0d6efd;
+}
+.profilehead button:hover{
+    background-color: #0b5ed7;
+}
