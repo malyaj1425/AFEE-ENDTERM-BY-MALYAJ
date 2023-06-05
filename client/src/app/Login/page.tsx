@@ -34,7 +34,7 @@ const Login = () => {
   return (
     <>
     <Header/>
-    <m.div animate={{ y: "0%" }} initial={{y:"100%"}} transition={{delay:".1"}} id="home-page" className="page">
+    <m.div animate={{ y: "0%" }} initial={{y:"100%"}} transition={{delay: .1 }} id="home-page" className="page">
     <div className='loginform'>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>

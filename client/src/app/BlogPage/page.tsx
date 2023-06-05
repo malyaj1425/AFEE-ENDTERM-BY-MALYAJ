@@ -8,7 +8,7 @@ import Header from "../Header";
 const BlogPage = () => {
   const router = useRouter();
   const blogId = localStorage.getItem('blogId');
-  const [blog, setBlog] = useState(null);
+  const [blog, setBlog] = useState<any>(null);
   const [likes, setLikes] = useState(0); // New state for likes
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const BlogPage = () => {
   return (
     <>
       <Header />
-      <m.div animate={{ y: "0%" }} initial={{ y: "100%" }} transition={{ delay: ".1" }} id="home-page" className="page">
+      <m.div animate={{ y: "0%" }} initial={{ y: "100%" }} transition={{ delay: .1 }} id="home-page" className="page">
         <div className="max-w-2xl mx-auto py-8 px-4">
           <h2 className="text-2xl font-bold mb-4">{blog.title}</h2>
           <p className="text-gray-700 mb-4">{blog.blog}</p>

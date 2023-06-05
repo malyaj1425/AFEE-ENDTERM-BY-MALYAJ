@@ -53,7 +53,7 @@ const AddBlog = () => {
   return (
     <>
     <Header/>
-    <m.div animate={{ y: "0%" }} initial={{y:"100%"}} transition={{delay:".1"}} id="home-page" className="page">
+    <m.div animate={{ y: "0%" }} initial={{y:"100%"}} transition={{delay:.1}} id="home-page" className="page">
     <div className="ml-10 mr-10 border-4 p-4 addblog rounded-lg mt-10 mx-auto">
       <h1 className="text-3xl font-bold mb-6">Add Blog</h1>
       <form onSubmit={handleSubmit} className="space-y-4">

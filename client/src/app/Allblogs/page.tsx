@@ -28,7 +28,7 @@ export default function Allblogs(){
         return text.substr(0, maxLength) + '...';
       }
 
-      const handleReadMore = (blog) => {
+      const handleReadMore = (blog:any) => {
         localStorage.setItem('blogId', blog._id);
         router.push('/BlogPage');
       };

@@ -77,7 +77,7 @@ const Profile = () => {
     }
     return text.substr(0, maxLength) + '...';
   }
-  const handleReadMore = (blog) => {
+  const handleReadMore = (blog:any) => {
     localStorage.setItem('blogId', blog._id);
     router.push('/BlogPage');
   };
@@ -91,7 +91,7 @@ const Profile = () => {
       <button onClick={handleLogout}>Logout</button>
       <br/>
       </div>
-      <m.div animate={{ y: "0%" }} initial={{ y: "100%" }} transition={{ delay: ".1" }} id="home-page" className="page">
+      <m.div animate={{ y: "0%" }} initial={{ y: "100%" }} transition={{ delay : .1 }} id="home-page" className="page">
       <div className='cards'>
       <div className='card1'>
   <h1 className="text-2xl font-bold mb-4">All Blogs</h1>

@@ -11,7 +11,7 @@ export default function Header() {
   const handleSearch = async () => {
     try {
       const response = await axios.get(`http://localhost:8080/blogs?q=${searchQuery}`);
-      const filteredResults = response.data.filter((blog) =>
+      const filteredResults = response.data.filter((blog:any) =>
         blog.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setSearchResults(filteredResults);
@@ -27,7 +27,7 @@ export default function Header() {
       setSearchResults([]);
     }
   }, [searchQuery]);
-  const handleReadMore = (blog) => {
+  const handleReadMore = (blog:any) => {
     localStorage.setItem('blogId', blog._id);
     router.push('/BlogPage');
   };
@@ -47,7 +47,7 @@ export default function Header() {
           />
           {searchResults.length > 0 && (
             <ul className="w-full absolute text-black top-10 bg-white rounded shadow-lg z-10">
-              {searchResults.map((blog) => (
+              {searchResults.map((blog:any) => (
                 <li key={blog.id} className="px-4 py-2 hover:bg-gray-100">
                   <button onClick={()=>handleReadMore(blog)}>{blog.title}</button>
                 </li>
