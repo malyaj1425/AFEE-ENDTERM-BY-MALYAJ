@@ -14,7 +14,7 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/blogs/${blogId}`);
+        const response = await axios.get(`https://cerebrumoneserver.onrender.com/blogs/${blogId}`);
         setBlog(response.data);
       } catch (error) {
         console.log(error);

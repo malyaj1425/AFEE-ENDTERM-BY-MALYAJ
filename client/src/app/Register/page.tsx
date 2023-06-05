@@ -16,7 +16,7 @@ const Register = () => {
     e.preventDefault();
   
     try {
-      const response = await axios.post("http://localhost:8080/register", {
+      const response = await axios.post("https://cerebrumoneserver.onrender.com/register", {
         name,
         email,
         password,

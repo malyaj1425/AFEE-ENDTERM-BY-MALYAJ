@@ -11,7 +11,7 @@ export default function Allblogs(){
         
         const fetchBlogs = async () => {
           try {
-            const response = await axios.get(`http://localhost:8080/blogs/`);
+            const response = await axios.get(`https://cerebrumoneserver.onrender.com/blogs/`);
             setBlogs(response.data);
           } catch (error) {
             console.log(error);

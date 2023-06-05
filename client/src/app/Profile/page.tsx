@@ -23,7 +23,7 @@ const Profile = () => {
           // You can customize this behavior according to your app's requirements
           return window.location.replace('/Login');
         }
-        const response = await axios.get('http://localhost:8080/profile', {
+        const response = await axios.get('https://cerebrumoneserver.onrender.com/profile', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -44,7 +44,7 @@ const Profile = () => {
     const fetchBlogs = async () => {
       try {
         
-        const response = await axios.get(`http://localhost:8080/blogs/user/${userName}`);
+        const response = await axios.get(`https://cerebrumoneserver.onrender.com/blogs/user/${userName}`);
         setBlogs(response.data);
       } catch (error) {
         console.log(error);
@@ -56,7 +56,7 @@ const Profile = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:8080/logout');
+      await axios.post('https://cerebrumoneserver.onrender.com/logout');
 
       // Clear the token from localStorage
       localStorage.removeItem('token');

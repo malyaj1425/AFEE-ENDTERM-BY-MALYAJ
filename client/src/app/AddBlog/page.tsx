@@ -41,7 +41,7 @@ const AddBlog = () => {
         token
       };
 
-      const response = await axios.post('http://localhost:8080/add-blog', data, config);
+      const response = await axios.post('https://cerebrumoneserver.onrender.com/add-blog', data, config);
       alert("Blog Uploaded");
       router.push('/Profile');
       console.log(response.data); // Blog added successfully

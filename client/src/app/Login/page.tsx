@@ -18,7 +18,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/login', {
+      const response = await axios.post('https://cerebrumoneserver.onrender.com/login', {
         email,
         password
       });
