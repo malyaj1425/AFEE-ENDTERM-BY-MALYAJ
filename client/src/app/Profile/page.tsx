@@ -3,11 +3,15 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Header from '../Header';
+import { motion as m } from "framer-motion";
 import "./page.css"
 const Profile = () => {
+  if (!localStorage.getItem('token')) {
+    return window.location.replace('/Login');
+  }
   const [user, setUser] = useState({name:"",email:""});
   const [blogs,setBlogs]=useState([{_id:"",name:"",blog:"",title:""}]);
-  const [expandedBlogId, setExpandedBlogId] = useState(null);
+  const [expandedBlogId, setExpandedBlogId] = useState<any>(null);
   const router = useRouter();
   
   useEffect(() => {
@@ -67,13 +71,16 @@ const Profile = () => {
   if (!user) {
     return <p>Loading...</p>;
   }
-  function truncateText(text, maxLength) {
+  function truncateText(text:any, maxLength:any) {
     if (text.length <= maxLength) {
       return text;
     }
     return text.substr(0, maxLength) + '...';
   }
-  
+  const handleReadMore = (blog) => {
+    localStorage.setItem('blogId', blog._id);
+    router.push('/BlogPage');
+  };
   return (
     <div>
       <Header/>
@@ -84,7 +91,7 @@ const Profile = () => {
       <button onClick={handleLogout}>Logout</button>
       <br/>
       </div>
-
+      <m.div animate={{ y: "0%" }} initial={{ y: "100%" }} transition={{ delay: ".1" }} id="home-page" className="page">
       <div className='cards'>
       <div className='card1'>
   <h1 className="text-2xl font-bold mb-4">All Blogs</h1>
@@ -96,7 +103,7 @@ const Profile = () => {
         {blog.blog.length > 150 && (
           <button
             className="text-blue-600 hover:underline"
-            onClick={() => setExpandedBlogId(blog._id)}
+            onClick={()=>handleReadMore(blog)}
           >
             Read More
           </button>
@@ -111,7 +118,9 @@ const Profile = () => {
 </div>
 
       </div>
+      </m.div>
     </div>
+    
   );
 };
 

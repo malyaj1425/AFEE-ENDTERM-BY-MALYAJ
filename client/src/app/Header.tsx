@@ -2,11 +2,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-
+  const router = useRouter();
   const handleSearch = async () => {
     try {
       const response = await axios.get(`http://localhost:8080/blogs?q=${searchQuery}`);
@@ -26,12 +27,15 @@ export default function Header() {
       setSearchResults([]);
     }
   }, [searchQuery]);
-
+  const handleReadMore = (blog) => {
+    localStorage.setItem('blogId', blog._id);
+    router.push('/BlogPage');
+  };
   return (
     <div className="flex items-center justify-between bg-gray-800 text-white py-4 px-6 relative">
       <div className="space-x-4 flex items-center">
         <Link href="/" className="text-xl font-bold">
-          MEDIUM
+        CEREBRUM
         </Link>
         <div className="relative">
           <input
@@ -45,7 +49,7 @@ export default function Header() {
             <ul className="w-full absolute text-black top-10 bg-white rounded shadow-lg z-10">
               {searchResults.map((blog) => (
                 <li key={blog.id} className="px-4 py-2 hover:bg-gray-100">
-                  <Link href={`/blog/${blog.id}`}>{blog.title}</Link>
+                  <button onClick={()=>handleReadMore(blog)}>{blog.title}</button>
                 </li>
               ))}
             </ul>

@@ -1,4 +1,5 @@
 "use client"
+import { motion as m} from "framer-motion";
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
@@ -31,6 +32,7 @@ const Login = () => {
   return (
     <>
     <Header/>
+    <m.div animate={{ y: "0%" }} initial={{y:"100%"}} transition={{delay:".1"}} id="home-page" className="page">
     <div className='loginform'>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
@@ -41,7 +43,7 @@ const Login = () => {
         <button type="submit">Login</button>
       </form>
       <Link href="/Register"><p>don't have an account?</p></Link>
-    </div></>
+    </div></m.div></>
   );
 };
 

@@ -2,7 +2,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-
+import { motion as m } from "framer-motion";
+import Header from '../Header';
+import "./page.css"
 const AddBlog = () => {
   const [title, setTitle] = useState('');
   const [blog, setBlog] = useState('');
@@ -40,7 +42,8 @@ const AddBlog = () => {
       };
 
       const response = await axios.post('http://localhost:8080/add-blog', data, config);
-
+      alert("Blog Uploaded");
+      router.push('/Profile');
       console.log(response.data); // Blog added successfully
     } catch (error) {
       console.error(error);
@@ -48,24 +51,41 @@ const AddBlog = () => {
   };
 
   return (
-    <div>
-      <h1>Add Blog</h1>
-      <form onSubmit={handleSubmit}>
+    <>
+    <Header/>
+    <m.div animate={{ y: "0%" }} initial={{y:"100%"}} transition={{delay:".1"}} id="home-page" className="page">
+    <div className="ml-10 mr-10 border-4 p-4 addblog rounded-lg mt-10 mx-auto">
+      <h1 className="text-3xl font-bold mb-6">Add Blog</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label>
-            Title:
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <label className="block">
+            <span className="text-lg font-medium">Title:</span>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3"
+            />
           </label>
         </div>
         <div>
-          <label>
-            Blog:
-            <textarea value={blog} onChange={(e) => setBlog(e.target.value)}></textarea>
+          <label className="block">
+            <span className="text-lg font-medium">Blog:</span>
+            <textarea
+              value={blog}
+              onChange={(e) => setBlog(e.target.value)}
+              className="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3"
+            ></textarea>
           </label>
         </div>
-        <button type="submit">Submit</button>
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded"
+        >
+          Submit
+        </button>
       </form>
-    </div>
+    </div></m.div></>
   );
 };
 

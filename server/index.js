@@ -35,40 +35,56 @@ const authenticateToken = (req, res, next) => {
 };
 
 // Register
+const Joi = require("joi");
+
+// Register
 app.post("/register", async (req, res) => {
-    try {
-      const { name, email, password } = req.body;
-      if (!(name && email && password)) {
-        res.status(400).send("ALL INPUT IS REQUIRED");
-      }
-  
-      const OldUser = await User.findOne({ email });
-      if (OldUser) {
-        return res.status(409).send("User Already Exists");
-      }
-  
-      encryptedPassword = await bcrypt.hash(password, 10);
-  
-      const user = await User.create({
-        name,
-        email,
-        password: encryptedPassword,
-      });
-  
-      const token = jwt.sign(
-        { user_id: user._id, email },
-        process.env.TOKEN_KEY,
-        {
-          expiresIn: "2h",
-        }
-      );
-      user.token = token;
-  
-      res.status(201).json(user);
-    } catch (err) {
-      console.log(err);
+  try {
+    const { error } = validateRegistration(req.body);
+    if (error) {
+      return res.status(400).send(error.details[0].message);
     }
-  });  
+
+    const { name, email, password } = req.body;
+
+    const OldUser = await User.findOne({ email });
+    if (OldUser) {
+      return res.status(409).send("User Already Exists");
+    }
+
+    const encryptedPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      name,
+      email,
+      password: encryptedPassword,
+    });
+
+    const token = jwt.sign(
+      { user_id: user._id, email },
+      process.env.TOKEN_KEY,
+      {
+        expiresIn: "2h",
+      }
+    );
+    user.token = token;
+
+    res.status(201).json(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+function validateRegistration(user) {
+  const schema = Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(6).required(),
+  });
+
+  return schema.validate(user);
+}
+ 
 
 // Login
 app.post("/login", async (req, res) => {
@@ -188,6 +204,31 @@ app.get("/blogs/user/:userName", async (req, res) => {
     const userName = req.params.userName;
     const blogs = await getBlogsByUserName(userName);
     res.status(200).json(blogs);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Function to get blog by id
+const getBlogByBlogId = async (id) => {
+  try {
+    const blog = await Blogs.findById(id);
+    
+    return blog;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch blog");
+  }
+}
+
+// Route to get blog by blog id
+app.get("/blogs/:title", async (req, res) => {
+  try {
+    const title = req.params.title; // Use req.params.title to access the parameter from the URL path
+    const blog = await getBlogByBlogId(title);
+    console.log(blog);
+    res.status(200).json(blog);
   } catch (err) {
     console.log(err);
     res.status(500).send("Internal Server Error");
