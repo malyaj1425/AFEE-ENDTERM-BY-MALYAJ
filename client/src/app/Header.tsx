@@ -60,7 +60,7 @@ export default function Header() {
         <Link href="/AddBlogPage" className="text-gray-300 hover:text-white">
           Write
         </Link>
-        <Link href="/Profile" className="text-gray-300 hover:text-white">
+        <Link href="/Login" className="text-gray-300 hover:text-white">
           Profile
         </Link>
       </div>

@@ -23,7 +23,6 @@ const Register = () => {
       });
       alert("Registered Succesfully")
       router.push('/Login');
-
       console.log(response.data);
     } catch (error: any) {
       console.error(error);

@@ -11,7 +11,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-
+  if(localStorage.getItem('token')){
+    router.push('/Profile');
+  }
   const handleSubmit = async (e:any) => {
     e.preventDefault();
 
