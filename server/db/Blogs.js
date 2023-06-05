@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 mongoose.connect(
-  "mongodb+srv://cody:cmdrex505@project0.zuduho3.mongodb.net/?retryWrites=true&w=majority",
+  "",
   { useNewUrlParser: true }
 );
 
